@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:23 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/09 12:25:38 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/09 12:39:24 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,20 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 	// check if I have the last fraction N bits to zero and then convert to int
 	if ((fixed.getRawBits() % 256) == 0) // 256 is 2 ^ to my fraction bits 
 		os << fixed.toInt();
-	else // here I set the precision to 8 decimal places which is good for this ex but wuld need to be expanded
-		os << std::fixed << std::setprecision(8) << fixed.toFloat();
+	else { // here I set the precision to 8 decimal places and remove trainling zeros
+	    std::ostringstream oss;
+        oss << std::fixed << std::setprecision(8) << fixed.toFloat();
+        std::string floatStr = oss.str();
+
+        // Remove trailing zeros
+        floatStr.erase(floatStr.find_last_not_of('0') + 1, std::string::npos);
+        // Remove the decimal point if it's the last character
+        if (floatStr[floatStr.size() - 1] == '.') {
+            floatStr.erase(floatStr.size() - 1);
+        }
+
+        os << floatStr;
+	}
 	return os;
 }
 
