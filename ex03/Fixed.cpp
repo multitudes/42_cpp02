@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:23 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/09 10:09:38 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/09 12:26:08 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ Fixed::Fixed( int const n ) {
 static double myRound(double value) {
     return (value >= 0.0) ? floor(value + 0.5) : ceil(value - 0.5);
 }
+
 /**
  * @brief Fixed::Fixed constructor with float
  * 
@@ -107,6 +108,29 @@ Fixed::Fixed( float const f ) {
     } else {
         number = static_cast<int>(myRound(d));
     }
+}
+
+/**
+ * @brief Fixed::Fixed copy constructor
+ * 
+ * @param copy 
+ */
+Fixed::Fixed(const Fixed& copy) : number(copy.getRawBits()) {
+	debug("Copy constructor called");
+}
+
+/**
+ * @brief Fixed::operator=
+ * 
+ * @param assignment operator 
+ * @return Fixed& 
+ */
+Fixed& Fixed::operator=(const Fixed& assign) {
+	debug("Assignment operator called");
+	// handle when the object is assigned to itself
+	if (this != &assign)
+		this->number = assign.getRawBits();
+	return *this;
 }
 
 /**
@@ -149,29 +173,6 @@ int Fixed::toInt( void ) const {
  */
 Fixed::~Fixed( void ) {
 	debug("Destructor called");
-}
-
-/**
- * @brief Fixed::Fixed copy constructor
- * 
- * @param copy 
- */
-Fixed::Fixed(const Fixed& copy) {
-	debug("Copy constructor called");
-	*this = copy;
-}
-
-/**
- * @brief Fixed::operator=
- * 
- * @param assignment operator 
- * @return Fixed& 
- */
-Fixed &Fixed::operator=(const Fixed& assign) {
-
-	if (this != &assign)
-		this->number = assign.getRawBits();
-	return *this;
 }
 
 /**

@@ -30,7 +30,7 @@ fclean: clean
 
 re: fclean all
 
-run:
+run: all
 	@echo
 	@PATH=".$${PATH:+:$${PATH}}" && $(NAME) $(ARGS)
 

@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:23 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/08 17:50:36 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/09 11:40:56 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ Fixed::~Fixed( void ) {
  * like Fixed a = b;
  * but if a is already created, then the assignment operator will be called as below
  */
-Fixed::Fixed(const Fixed& copy) {
+Fixed::Fixed(const Fixed& copy) : number(copy.getRawBits()) {
 	debug("Copy constructor called");
-	*this = copy;
 }
 
 /**
@@ -75,6 +74,7 @@ Fixed::Fixed(const Fixed& copy) {
  */
 Fixed& Fixed::operator=(const Fixed& assign) {
 	debug("Assignment operator called");
+	// handle when the object is assigned to itself
 	if (this != &assign)
 		this->number = assign.getRawBits();
 	return *this;

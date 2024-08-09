@@ -1,5 +1,6 @@
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-CXXFLAGS += -Wshadow -Wconversion -Wunreachable-code
+CXXFLAGS += -Wshadow -Wconversion -Wunreachable-code 
+CXXFLAGS += -fno-elide-constructors
 
 # -O0: Disables optimization to make debugging easier..
 CXXFLAGS += -g3 -O0

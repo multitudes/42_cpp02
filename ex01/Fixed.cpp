@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:23 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/08 18:26:59 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/09 12:24:42 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,38 @@ Fixed::Fixed( float const f ) {
 }
 
 /**
+ * @brief Fixed::~Fixed
+ * 
+ * Destructor
+ */
+Fixed::~Fixed( void ) {
+	debug("Destructor called");
+}
+
+/**
+ * @brief Fixed::Fixed copy constructor
+ * 
+ * @param copy 
+ */
+Fixed::Fixed(const Fixed& copy) : number(copy.getRawBits()) {
+	debug("Copy constructor called");
+}
+
+/**
+ * @brief Fixed::operator=
+ * 
+ * @param assignment operator 
+ * @return Fixed& 
+ */
+Fixed& Fixed::operator=(const Fixed& assign) {
+	debug("Assignment operator called");
+	// handle when the object is assigned to itself
+	if (this != &assign)
+		this->number = assign.getRawBits();
+	return *this;
+}
+
+/**
  * @brief Fixed::toFloat
  * 
  * @return float
@@ -142,37 +174,6 @@ int Fixed::toInt( void ) const {
 	return this->number >> Fixed::fraction;
 }
 
-/**
- * @brief Fixed::~Fixed
- * 
- * Destructor
- */
-Fixed::~Fixed( void ) {
-	debug("Destructor called");
-}
-
-/**
- * @brief Fixed::Fixed copy constructor
- * 
- * @param copy 
- */
-Fixed::Fixed(const Fixed& copy) {
-	debug("Copy constructor called");
-	*this = copy;
-}
-
-/**
- * @brief Fixed::operator=
- * 
- * @param assignment operator 
- * @return Fixed& 
- */
-Fixed &Fixed::operator=(const Fixed& assign) {
-
-	if (this != &assign)
-		this->number = assign.getRawBits();
-	return *this;
-}
 
 /**
  * @brief Fixed::getRawBits
