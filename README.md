@@ -144,11 +144,11 @@ Long time ago when computers did not have floating point units, fixed point arit
 There is not much on the internet today about this topic.  I found something on wiki ( see below for links)   
 The idea is to take an int and decide how many bits for the fractional part we will need.  
 For example, if we have a 32 bit int and we decide to use 8 bits for the decimal part, we can represent numbers from -2^23 to 2^23-1 with a precision of 1/256. Since the int has 32 bits:  
-`00000000 00000000 00000000.00000000`
-we pass a raw value of 256 to our Fixed class we get 1 in decimal:
-`00000000 00000000 00000001.00000000`
-or :
-`00000000 00000000 00000000.11111111`
+`00000000 00000000 00000000.00000000`  
+we pass a raw value of 256 to our Fixed class we get 1 in decimal:  
+`00000000 00000000 00000001.00000000`  
+or :  
+`00000000 00000000 00000000.11111111`  
 will be a raw value of 255 which is 0.99609375 converted to float. The reason for this is that our 8 bit precision is 1/256 or 0.00390625. And 255 * 0.00390625 = 0.99609375. In our toFloat however we will get a float value of 0.996094. It is somewhat disappointing but we lose precision when converting to float.  A single-precision float (IEEE 754) has approximately 7 decimal digits of precision but this decreases for large numbers.  
 There are many articles about this topic and how to handle the loss of precision.  I recommend to start with the blog post by fabien sanglard (link below) about how float numbers are represented in memory. 
 
