@@ -177,7 +177,34 @@ class Fixed {
 		int number;
 };
 ``` 
+## Ad-hoc polymorphism
+The `<<` operator is overloaded to print different types of arguments.  We create a function to optimize the printing of fixed point numbers.
+- If my fixed ooint number is an int I print an int
+- if a float i print a float.
+- if it ha trailing zeroes I can remove them
 
+```cpp
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
+    // check if I have the last fraction N bits to zero and then convert to int
+    if ((fixed.getRawBits() % 256) == 0) // 256 is 2 ^ to my fraction bits 
+        os << fixed.toInt();
+    else { // here I set the precision to 8 decimal places and remove trailing zeros
+        std::ostringstream oss;
+        oss << std::fixed << std::setprecision(8) << fixed.toFloat();
+        std::string floatStr = oss.str();
+
+        // Remove trailing zeros
+        floatStr.erase(floatStr.find_last_not_of('0') + 1, std::string::npos);
+        // Remove the decimal point if it's the last character
+        if (floatStr[floatStr.size() - 1] == '.') {
+            floatStr.erase(floatStr.size() - 1);
+        }
+
+        os << floatStr;
+    }
+    return os;
+}
+```
 
 ## ex00
 For this exercise we just write the class in the header file and a .cpp file with the implementation of the class.  We will just test the constructors printing a message when each is caled. See the discussion above about why the copy constructor is not being called when i am in a function... :)
