@@ -34,9 +34,10 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 	[...]
 }
 ```
+Ad hoc polymorphism is based on compile-time information (static binding).  
+It can be used for both functions and operators.
 
 ## what is a canonical form?
-
 Defines the essential members for proper object management:
 
 - Default Constructor: Creates an object in a valid state.
