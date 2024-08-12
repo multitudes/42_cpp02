@@ -2,10 +2,38 @@
 
 This is a project for learning C++ at 42 Berlin.  
 The main topics are:
- - foating point arithmetic vs fixed point arithmetic
+ - floating point arithmetic vs fixed point arithmetic
  - Ad-hoc polymorphism
  - Operator overloading
  - Canonical classes
+
+## What is Ad hoc polymorphism?
+It is a form of polymorphism that allows functions with the same name to be defined for different types of arguments.  
+It's achieved through function overloading and operator overloading.
+
+- Function overloading involves defining multiple functions with the same name but different parameter lists. The compiler selects the appropriate function based on the argument types provided.
+```cpp
+void print(int x) {
+    std::cout << "Integer: " << x << std::endl;
+}
+
+void print(double x) {
+    std::cout << "Double: " << x << std::endl;
+}
+
+int main() {
+    print(5);   // Calls the first print function
+    print(3.14); // Calls the second print function
+}
+```
+- Operator overloading - You can redefine the behavior of operators for custom types.
+For instance I redefine the `<<` operator to print fixed point numbers.  
+```
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
+{
+	[...]
+}
+```
 
 ## what is a canonical form?
 
