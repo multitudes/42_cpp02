@@ -28,7 +28,7 @@ int main() {
 ```
 - Operator overloading - You can redefine the behavior of operators for custom types.
 For instance I redefine the `<<` operator to print fixed point numbers.  
-```
+```cpp
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 {
 	[...]
