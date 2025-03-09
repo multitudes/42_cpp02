@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
+/*   By: lbrusa <lbrusa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:31:11 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/07 11:02:09 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/09/18 16:37:23 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ class Fixed {
 		// references on constant fixed-point numbers, and returns a reference
 		static const Fixed& min(const Fixed& a, const Fixed& b);
 		static const Fixed& max(const Fixed& a, const Fixed& b);
-		
+
 	private:
 		int number;
 		// initialized in Fixed.cpp

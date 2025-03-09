@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
+/*   By: lbrusa <lbrusa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:34:29 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/07 11:02:22 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/09/18 16:35:34 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ class Point {
 		Fixed getY( void ) const;
 			
 	private:
-		Fixed x;
-		Fixed y;
+		Fixed const x;
+		Fixed const y;
 };
 
 #endif  // POINT_HPP_

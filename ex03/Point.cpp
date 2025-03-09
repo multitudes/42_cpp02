@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
+/*   By: lbrusa <lbrusa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 14:33:54 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/06 12:52:37 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/09/18 16:36:13 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
+#include <utility> 
 #include "debug.h"
 
 /**
@@ -44,20 +45,21 @@ Point::~Point( void ) {
  * 
  * @param copy 
  */
-Point::Point(const Point& copy) {
+Point::Point(const Point& copy): x(copy.x), y(copy.y) {
 	debug("Copy constructor called");
-	*this = copy;
 }
 
 /**
  * @brief Point::operator= assignment operator
+ * 
+ * Since the x and y values are const, 
+ * the assignment operator will only return the current object.
+ * Cannot change the x and y values.
  */
 Point &Point::operator=(const Point& assign) {
 	debug("Assignment operator called");
-	if (this != &assign) {
-		this->x = assign.x;
-		this->y = assign.y;
-	}
+	if (this != &assign)
+		return *this;
 	return *this;
 }
 
@@ -78,3 +80,4 @@ Fixed Point::getX( void ) const {
 Fixed Point::getY( void ) const {
 	return this->y;
 }
+
